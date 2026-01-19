@@ -1,0 +1,63 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id          String   @id @default(uuid())
+  googleId    String   @unique
+  email       String   @unique
+  displayName String
+  avatarUrl   String?
+  createdAt   DateTime @default(now())
+
+  profile      Profile?
+  gameProgress GameProgress[]
+  settings     Settings?
+  scores       Score[]
+}
+
+model Profile {
+  id          String @id @default(uuid())
+  userId      String @unique
+  playerName  String
+  playerColor String @default("#4a90d9")
+  user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model GameProgress {
+  id          String   @id @default(uuid())
+  userId      String
+  levelIndex  Int
+  completed   Boolean  @default(false)
+  highestWave Int      @default(0)
+  stars       Int      @default(0)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, levelIndex])
+}
+
+model Settings {
+  id               String  @id @default(uuid())
+  userId           String  @unique
+  musicVolume      Float   @default(0.7)
+  sfxVolume        Float   @default(1.0)
+  vibrationEnabled Boolean @default(true)
+  user             User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model Score {
+  id           String   @id @default(uuid())
+  userId       String
+  levelIndex   Int
+  score        Int
+  soldierCount Int
+  createdAt    DateTime @default(now())
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([levelIndex, score(sort: Desc)])
+}
