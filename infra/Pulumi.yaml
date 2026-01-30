@@ -1,0 +1,3 @@
+name: z-rush-infra
+runtime: nodejs
+description: Z-Rush Game Server Infrastructure on OCI

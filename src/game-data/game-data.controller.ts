@@ -1,4 +1,12 @@
-import { Controller, Get, Post, Put, Body, UseGuards, Req } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Put,
+  Body,
+  UseGuards,
+  Req,
+} from '@nestjs/common';
 import { User } from '@prisma/client';
 import { GameDataService } from './game-data.service';
 import { JwtAuthGuard } from '../auth/guards/jwt-auth.guard';
@@ -30,7 +38,10 @@ export class GameDataController {
   }
 
   @Put('settings')
-  async updateSettings(@Req() req: AuthRequest, @Body() dto: UpdateSettingsDto) {
+  async updateSettings(
+    @Req() req: AuthRequest,
+    @Body() dto: UpdateSettingsDto,
+  ) {
     return this.gameDataService.updateSettings(req.user.id, dto);
   }
 }

@@ -1,4 +1,4 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { Injectable } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service';
 import { SaveProgressDto } from './dto/game-progress.dto';
 import { UpdateSettingsDto } from './dto/settings.dto';
@@ -30,12 +30,14 @@ export class GameDataService {
         where: { id: existing.id },
         data: {
           completed: dto.completed ?? existing.completed,
-          highestWave: dto.highestWave !== undefined
-            ? Math.max(dto.highestWave, existing.highestWave)
-            : existing.highestWave,
-          stars: dto.stars !== undefined
-            ? Math.max(dto.stars, existing.stars)
-            : existing.stars,
+          highestWave:
+            dto.highestWave !== undefined
+              ? Math.max(dto.highestWave, existing.highestWave)
+              : existing.highestWave,
+          stars:
+            dto.stars !== undefined
+              ? Math.max(dto.stars, existing.stars)
+              : existing.stars,
         },
       });
     }

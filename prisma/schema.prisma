@@ -26,6 +26,7 @@ model Profile {
   userId      String @unique
   playerName  String
   playerColor String @default("#4a90d9")
+  weaponType  String @default("pistol")
   user        User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 

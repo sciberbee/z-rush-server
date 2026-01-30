@@ -41,6 +41,7 @@ export class UsersService {
           userId,
           playerName: dto.playerName || user.displayName,
           playerColor: dto.playerColor || '#4a90d9',
+          weaponType: dto.weaponType || 'pistol',
         },
       });
       return profile;
@@ -51,6 +52,7 @@ export class UsersService {
       data: {
         ...(dto.playerName && { playerName: dto.playerName }),
         ...(dto.playerColor && { playerColor: dto.playerColor }),
+        ...(dto.weaponType && { weaponType: dto.weaponType }),
       },
     });
 

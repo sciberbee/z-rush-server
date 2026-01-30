@@ -1,0 +1,36 @@
+config:
+  # OCI Provider Configuration
+  oci:region: ap-seoul-1
+  oci:tenancyOcid: ocid1.tenancy.oc1..aaaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  oci:userOcid: ocid1.user.oc1..aaaaaaaaxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  oci:fingerprint: aa:bb:cc:dd:ee:ff:00:11:22:33:44:55:66:77:88:99
+  oci:privateKey:
+    secure: <encrypted-private-key>
+
+  # Application Configuration
+  z-rush-infra:compartmentId: ocid1.compartment.oc1..aaaaaaaaxxxxxxxx
+  z-rush-infra:domainName: api.z-rush.com
+  z-rush-infra:frontendUrl: https://z-rush.com
+
+  # Database (use strong passwords!)
+  z-rush-infra:dbUser: zrush
+  z-rush-infra:dbPassword:
+    secure: <encrypted-db-password>
+  z-rush-infra:dbName: zrush
+
+  # JWT Secret
+  z-rush-infra:jwtSecret:
+    secure: <encrypted-jwt-secret>
+
+  # Google OAuth (from Google Cloud Console)
+  z-rush-infra:googleClientId: xxxxx.apps.googleusercontent.com
+  z-rush-infra:googleClientSecret:
+    secure: <encrypted-google-secret>
+
+  # SSH Public Key (for server access)
+  z-rush-infra:sshPublicKey: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx your-email@example.com
+
+  # Optional: Override instance settings
+  # z-rush-infra:instanceShape: VM.Standard.A1.Flex
+  # z-rush-infra:instanceOcpus: 2
+  # z-rush-infra:instanceMemoryGb: 12

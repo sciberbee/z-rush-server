@@ -1,0 +1,22 @@
+{
+  "name": "z-rush-infra",
+  "version": "1.0.0",
+  "description": "Z-Rush Server OCI Infrastructure with Pulumi",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc",
+    "preview": "pulumi preview",
+    "up": "pulumi up",
+    "destroy": "pulumi destroy",
+    "refresh": "pulumi refresh"
+  },
+  "dependencies": {
+    "@pulumi/pulumi": "^3.100.0",
+    "@pulumi/oci": "^1.20.0",
+    "@pulumi/command": "^0.9.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "typescript": "^5.3.0"
+  }
+}
