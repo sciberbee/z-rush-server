@@ -8,9 +8,10 @@ async function bootstrap() {
 
   const configService = app.get(ConfigService);
   const frontendUrl = configService.get<string>('FRONTEND_URL') || 'http://localhost:5173';
+  const allowedOrigins = frontendUrl.split(',').map((url) => url.trim());
 
   app.enableCors({
-    origin: [frontendUrl, 'http://localhost:5173', 'http://localhost:4173'],
+    origin: [...allowedOrigins, 'http://localhost:5173', 'http://localhost:4173'],
     credentials: true,
   });
 
